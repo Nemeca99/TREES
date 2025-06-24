@@ -1,0 +1,90 @@
+# UML Calculator Stress Test Results
+
+## Overview of Tests
+Several tests were created to stress-test the UML Calculator's unique capabilities:
+
+1. **Recursive Collapse Tests (RIS Validation)**
+   - Tests that RIS(a, b) selects the lowest-entropy operation
+   - Tests nested RIS logic like RIS(RIS(2, 3), 4)
+   - Tests edge cases like RIS(16, 4)
+
+2. **Magic Square of Perfect Squares**
+   - Tests symbolic identity override
+   - Validates pseudo-magic grids with perfect squares
+   - Tests line sum uniformity
+
+3. **TFID / Identity Trace Stability**
+   - Tests stability of symbolic identities under transformations
+   - Validates TFID persistence with rotated grids
+   - Tests TFID breaking with value changes
+
+4. **RIS vs Traditional Math Edge Cases**
+   - Tests RIS with unstable inputs like RIS(0, 0)
+   - Tests asymmetry handling with RIS(∞, 0)
+   - Tests symbolic fallback with RIS(7, "unknown")
+
+5. **Symbolic Collapse Equivalence**
+   - Tests equivalence of different expressions collapsing to the same result
+   - Tests nested brackets like [3,>4,5<] and [3,9<]
+
+6. **Collapse Chain Length vs Entropy Score**
+   - Tests that shorter chains yield lower entropy
+   - Tests that RIS(2, 4) prefers multiplication
+
+7. **Compression Path Divergence**
+   - Tests that structurally different but symbolically similar expressions
+     produce different collapse paths
+   - Compares [2,×[3,+1]] vs [2×3 + 1]
+
+8. **Impossible Grids That Work Symbolically**
+   - Tests grids with duplicate perfect squares
+   - Tests symbolic compression with repeated values
+
+## Test Results
+The tests revealed several issues that need to be addressed:
+
+1. **Math Module Access**: Adding math and cmath to SAFE_CONSTANTS fixed the 
+   "Name 'math' is not defined or not allowed" error.
+
+2. **RIS Function**: Added RIS function to parse_uml to handle RIS meta-operator 
+   function call syntax.
+
+3. **Grid Format Issues**: Fixed grid format in magic square tests - they were 
+   being treated as dictionaries instead of lists.
+
+4. **UML Expression Parsing**: Issues with complex UML expressions like `{10,<>5,2<>}` 
+   and `×[3,+1]`. These need more robust parsing logic.
+
+5. **TFID Stability Test**: Fixed the list rotation logic in TFID test.
+
+6. **Import Errors**: Fixed module import paths.
+
+## Recommendations
+Based on the stress tests, here are recommended improvements:
+
+1. **Enhance RIS Implementation**:
+   - Add entropy-based operation selection
+   - Support for nested RIS operations
+   - Handle edge cases like zero, infinity, and symbolic values
+
+2. **Improve UML Expression Parsing**:
+   - More robust parsing for division and complex expressions
+   - Better splitting of arguments in nested expressions
+
+3. **Strengthen TFID Identity**:
+   - Make TFID more stable under transformations
+   - Better fingerprinting for symbolic equivalence
+
+4. **Expand Magic Square Validation**:
+   - Support for grids with repeated values but valid symbolic identity
+   - Better checking for pseudo-magic properties
+
+5. **General Robustness**:
+   - Better error handling throughout the codebase
+   - More consistent type handling (float, complex, symbolic)
+   - More extensive test suite with edge cases
+
+The UML Calculator shows promise in handling advanced mathematical concepts beyond
+traditional calculators, particularly in areas of symbolic compression, identity 
+preservation, and meta-operations like RIS. With the suggested improvements, it can
+become a powerful tool for mathematical exploration.

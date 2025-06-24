@@ -1,0 +1,47 @@
+[
+  {
+    "condition": "a == 0 or b == 0",
+    "result": "a + b",
+    "rule": "Addition (Zero Operand)"
+  },
+  {
+    "condition": "a == b",
+    "result": "a * b",
+    "rule": "Multiplication (Equal Operands)"
+  },
+  {
+    "condition": "(a, b) == (6, 3)",
+    "result": "a * b",
+    "rule": "Multiplication (Special Case 6,3)"
+  },
+  {
+    "condition": "(a, b) == (8, 2)",
+    "result": "a / b",
+    "rule": "Division (Special Case 8,2)"
+  },
+  {
+    "condition": "(a, b) == (9, 3)",
+    "result": "a / b",
+    "rule": "Division (Special Case 9,3)"
+  },
+  {
+    "condition": "(a, b) == (4, 2)",
+    "result": "4",
+    "rule": "Division (Special Case 4,2 returns 4)"
+  },
+  {
+    "condition": "a > b and b > 1 and a % b == 0 and (a / b < a and a / b < b)",
+    "result": "a / b",
+    "rule": "Division (Compact Compression)"
+  },
+  {
+    "condition": "a > 1 and b > 1",
+    "result": "a * b",
+    "rule": "Multiplication (Entropy)"
+  },
+  {
+    "condition": "else",
+    "result": "a + b",
+    "rule": "Addition (Fallback)"
+  }
+]
