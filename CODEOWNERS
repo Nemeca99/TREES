@@ -1,0 +1,14 @@
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# @Nemeca99 will be requested for review when someone opens a pull request.
+*       @Nemeca99
+
+# Core UML Calculator implementation
+/UML_Calculator/    @Nemeca99
+
+# Core T.R.E.E.S. Framework documentation
+/Documentation/     @Nemeca99
+
+# AI System implementations
+/BlackwallV2/       @Nemeca99
+/Nova_AI/           @Nemeca99
